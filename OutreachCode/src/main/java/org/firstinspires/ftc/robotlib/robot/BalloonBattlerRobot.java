@@ -2,11 +2,10 @@ package org.firstinspires.ftc.robotlib.robot;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotlib.drivetrain.ArcadeDrivetrain;
-import org.firstinspires.ftc.robotlib.motor.ServoMotor;
+import org.firstinspires.ftc.robotlib.motor.StateServoMotor;
 
 public class BalloonBattlerRobot
 {
@@ -15,7 +14,7 @@ public class BalloonBattlerRobot
     private DcMotor driveLeft;
 
     /** Arm variables **/
-    public ServoMotor armPopper;
+    public StateServoMotor armPopper;
 
     /** Robot variables **/
     private final HardwareMap hwMap;
@@ -43,7 +42,8 @@ public class BalloonBattlerRobot
 
 
         /** Arm Motor Init **/
-        armPopper = new ServoMotor(hwMap.get(DcMotor.class, "armPopper"), 0, 0, 250);
+        armPopper = new StateServoMotor(hwMap.get(DcMotor.class, "armPopper"));
+        armPopper.setPositions(0, 0, (int) armPopper.getMotorType().getTicksPerRev()/4);
         armPopper.setDirection(DcMotorSimple.Direction.FORWARD);
         armPopper.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armPopper.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

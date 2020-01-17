@@ -14,6 +14,9 @@ public class BalloonBattlerTeleOp extends OpMode
     private BalloonBattlerRobot robot;
     private Button attackButton;
 
+    /** Constants **/
+    private static final double ATTACK_POWER = 0.25;
+
     @Override
     public void init()
     {
@@ -34,13 +37,9 @@ public class BalloonBattlerTeleOp extends OpMode
 
         /** Move arm **/
         if (attackButton.onPress() && robot.armPopper.getServoState() != ServoState.DOWN)
-        {
-            robot.armPopper.setTargetPosition(ServoState.DOWN, 1);
-        }
+        { robot.armPopper.setTargetPosition(ServoState.DOWN, ATTACK_POWER); }
         else if (attackButton.onPress())
-        {
-            robot.armPopper.setTargetPosition(ServoState.UP, 1);
-        }
+        { robot.armPopper.setTargetPosition(ServoState.UP, ATTACK_POWER); }
 
         /** Telemetry **/
         telemetry.addData("Throttle", robot.drivetrain.getThrottle());

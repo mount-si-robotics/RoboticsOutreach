@@ -5,16 +5,21 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotlib.state.ServoState;
 
-public class ServoMotor extends ModifiedMotor
+public class StateServoMotor extends ModifiedMotor
 {
     private int[] positions;
     private ServoState servoState;
 
-    public ServoMotor(DcMotor motor, int stowedPosition, int openPosition, int closePosition)
+    public StateServoMotor(DcMotor motor, int stowedPosition, int openPosition, int closePosition)
     {
         super(motor);
 
         positions = new int[]{stowedPosition, openPosition, closePosition};
+    }
+
+    public StateServoMotor(DcMotor motor)
+    {
+        this (motor, 0, 0, 0);
     }
 
     public void setTargetPosition(ServoState servoState, double power)
