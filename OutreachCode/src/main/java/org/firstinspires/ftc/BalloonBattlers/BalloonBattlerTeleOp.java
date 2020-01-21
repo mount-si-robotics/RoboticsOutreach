@@ -30,7 +30,8 @@ public class BalloonBattlerTeleOp extends OpMode
     {
         /** Update Drivetrain **/
         robot.drivetrain.setThrottle(gamepad1.right_trigger);
-        robot.drivetrain.setRotation(gamepad1.right_stick_x);
+        robot.drivetrain.setBrake(gamepad1.left_trigger);
+        robot.drivetrain.setRotation(gamepad1.right_stick_x/2);
 
         /** Update Buttons **/
         attackButton.input(gamepad1.left_bumper);
