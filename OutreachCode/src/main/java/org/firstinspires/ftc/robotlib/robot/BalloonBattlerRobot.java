@@ -5,21 +5,22 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotlib.drivetrain.ArcadeDrivetrain;
+import org.firstinspires.ftc.robotlib.motor.LimitedMotor;
 import org.firstinspires.ftc.robotlib.motor.StateServoMotor;
 
 public class BalloonBattlerRobot
 {
-    /** Drive variables **/
+    // Drive variables
     private DcMotor driveRight;
     private DcMotor driveLeft;
 
-    /** Arm variables **/
+    // Arm variables
     public StateServoMotor armPopper;
 
-    /** Robot variables **/
+    // Robot variables
     private final HardwareMap hwMap;
 
-    /** Drivetrain **/
+    // Drivetrain
     public ArcadeDrivetrain drivetrain;
 
     public BalloonBattlerRobot(HardwareMap hwMap)
@@ -27,7 +28,7 @@ public class BalloonBattlerRobot
         // Hardware ref
         this.hwMap = hwMap;
 
-        /** Drive Motor Init **/
+        // Drive Motor Init
         driveRight = hwMap.get(DcMotor.class, "driveRight");
         driveLeft = hwMap.get(DcMotor.class, "driveLeft");
 
@@ -41,7 +42,7 @@ public class BalloonBattlerRobot
         driveLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
-        /** Arm Motor Init **/
+        // Arm Motor Init
         armPopper = new StateServoMotor(hwMap.get(DcMotor.class, "armPopper"));
         armPopper.setPositions(0, 0, (int) armPopper.getMotorType().getTicksPerRev()/4);
         armPopper.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -49,7 +50,7 @@ public class BalloonBattlerRobot
         armPopper.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
-        /** Drivetrain Init **/
+        // Drivetrain Init
         drivetrain = new ArcadeDrivetrain(driveLeft, driveRight);
     }
 }

@@ -2,6 +2,7 @@ package org.firstinspires.ftc.BalloonBattlers;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.robotlib.robot.BalloonBattlerRobot;
 import org.firstinspires.ftc.robotlib.state.Button;
