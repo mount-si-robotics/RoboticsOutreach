@@ -47,11 +47,11 @@ public class HeadingableMecanumDrivetrain extends MecanumDrivetrain implements H
     @Override
     public void rotate()
     {
-        /** Inits the first two rotation angle targets, the second one being a smaller target to increase accuracy **/
+        // Inits the first two rotation angle targets, the second one being a smaller target to increase accuracy
         double firstRotationAngle;
         double secondRotationAngle;
 
-        /** Converts the delta angle into two rotation commands, first and second angle **/
+        // Converts the delta angle into two rotation commands, first and second angle
         if (getRotation() > 0)
         {
             if (deltaAngle > 10)
@@ -79,7 +79,7 @@ public class HeadingableMecanumDrivetrain extends MecanumDrivetrain implements H
             }
         }
 
-        /** Rotates to the first rotation angle target **/
+        // Rotates to the first rotation angle target
         Double firstA = convert(firstRotationAngle - 5);
         Double firstB = convert(firstRotationAngle + 5);
         setRotation(rotationPower);
@@ -96,7 +96,7 @@ public class HeadingableMecanumDrivetrain extends MecanumDrivetrain implements H
             { updateHeading(); }
         }
 
-        /** Rotates to the second rotation angle target **/
+        // Rotates to the second rotation angle target
         Double secondA = convert(secondRotationAngle - 5);
         Double secondB = convert(secondRotationAngle + 5);
         setRotation(rotationPower/2);
@@ -113,7 +113,7 @@ public class HeadingableMecanumDrivetrain extends MecanumDrivetrain implements H
             { updateHeading(); }
         }
 
-        /** Finish rotation by resetting motors **/
+        // Finish rotation by resetting motors
         finishRotating();
     }
 

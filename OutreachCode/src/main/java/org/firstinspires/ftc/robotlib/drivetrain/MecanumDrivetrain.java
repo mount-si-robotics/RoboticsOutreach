@@ -23,7 +23,7 @@ public class MecanumDrivetrain extends HolonomicFourWheelDrivetrain
         return (Math.cos(course)-Math.sin(course)/Math.tan(wheelAngle))*Math.signum(wheelAngle);
     }
 
-    /** ENCODER BASED POSITIONING **/
+    // ENCODER BASED POSITIONING
     public void autoPositionByEncoder(double course, double distanceIN, double velocity)
     {
         // attempt to start with a full reset of program since encoder presents odd cary-over issue
@@ -42,7 +42,7 @@ public class MecanumDrivetrain extends HolonomicFourWheelDrivetrain
     public void autoPositionByEncoder(AutoDirection course, double distanceIN, double velocity)
     { autoPositionByEncoder(course.getAngle(), distanceIN, velocity);}
 
-    /** TIME BASED POSITIONING **/
+    // TIME BASED POSITIONING
     public void autoPositionByTime(double course, double timeSeconds, double velocity)
     {
         this.setCourse(-course * Math.PI/180);
