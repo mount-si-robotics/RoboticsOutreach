@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.BalloonBattlers;
+package org.firstinspires.ftc.launcher;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -16,6 +16,7 @@ public class LauncherTeleOp extends OpMode {
 
     @Override
     public void loop() {
-
+        robot.yawMotor.setPower(-gamepad1.right_stick_x);
+        robot.pitchMotor.setPower(-gamepad1.left_stick_y);
     }
 }

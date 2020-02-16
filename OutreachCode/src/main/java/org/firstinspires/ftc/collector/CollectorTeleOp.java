@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.BalloonBattlers;
+package org.firstinspires.ftc.collector;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;

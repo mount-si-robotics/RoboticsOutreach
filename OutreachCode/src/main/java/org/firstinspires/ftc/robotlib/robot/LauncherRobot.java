@@ -2,43 +2,47 @@ package org.firstinspires.ftc.robotlib.robot;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotlib.drivetrain.ArcadeDrivetrain;
+import org.firstinspires.ftc.robotlib.motor.LimitedMotor;
 
 public class LauncherRobot {
-    private DcMotor driveRight;
-    private DcMotor driveLeft;
+    public LimitedMotor yawMotor;
+    public LimitedMotor pitchMotor;
+    private DcMotor launcherMotor; // honestly don't remember this one
 
-    public DcMotor collectorMotor;
+    private DigitalChannel digitalTouchSensor;
 
     // Robot variables
     private final HardwareMap hwMap;
-
-    // Drivetrain
-    public ArcadeDrivetrain drivetrain;
 
     public LauncherRobot(HardwareMap hwMap) {
         // Hardware ref
         this.hwMap = hwMap;
 
-        // Drive Motor Init
-        driveRight = hwMap.get(DcMotor.class, "driveRight");
-        driveLeft = hwMap.get(DcMotor.class, "driveLeft");
-        //LimitedMotor motor = new LimitedMotor(hwMap.get(DcMotor.class, "motor"), 0, 1000);
+        // Motor Init
+        yawMotor = new LimitedMotor(hwMap.get(DcMotor.class, "yaw_motor"), 0, 100);
+        pitchMotor = new LimitedMotor(hwMap.get(DcMotor.class, "pitch_motor"), 0, 100);
+        launcherMotor = hwMap.get(DcMotor.class, "launcher_motor");
 
-        driveRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        driveLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+        yawMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        pitchMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        driveRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        driveLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        yawMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        pitchMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        driveRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        driveLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        yawMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        pitchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        collectorMotor = hwMap.get(DcMotor.class, "collector_motor");
+        // Touch Sensor Init
+        digitalTouchSensor = hwMap.get(DigitalChannel.class, "touch_sensor");
 
-        // Drivetrain Init
-        drivetrain = new ArcadeDrivetrain(driveLeft, driveRight);
+        digitalTouchSensor.setMode(DigitalChannel.Mode.INPUT);
+    }
+
+    public boolean isTouchSensorPressed() {
+        return !digitalTouchSensor.getState();
     }
 }
